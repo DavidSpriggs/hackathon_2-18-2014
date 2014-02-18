@@ -4,9 +4,9 @@ exports.port = process.env.PORT || 3000;
 exports.mongodb = {
   uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'localhost/blister'
 };
-exports.companyName = 'Acme, Inc.';
-exports.projectName = 'Blister';
-exports.systemEmail = 'dspriggs@esri.com';
+exports.companyName = 'City of Big Bear Lake';
+exports.projectName = 'Tripn\' Big Bear';
+exports.systemEmail = '<youraddy>@esri.com';
 exports.cryptoKey = 'k3yb0ardc4tzzz';
 exports.loginAttempts = {
   forIp: 50,
@@ -17,7 +17,7 @@ exports.requireAccountVerification = true;
 exports.smtp = {
   from: {
     name: process.env.SMTP_FROM_NAME || exports.projectName + ' Website',
-    address: process.env.SMTP_FROM_ADDRESS || 'dspriggs@esri.com'
+    address: process.env.SMTP_FROM_ADDRESS || '<youraddy>@esri.com'
   },
   credentials: {
     user: process.env.SMTP_USERNAME || '',

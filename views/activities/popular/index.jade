@@ -12,25 +12,25 @@ block feet
 
 block body
   div.row
-  div.col-sm-6
-    div.page-header
-      div.btn-group.btn-group-justified
-        a.btn.btn-primary(href='/activities/addPlan/')
-          | Today
-        a.btn.btn-primary(href='/activities/popular/')
-          | Tomorrow
-        a.btn.btn-primary(href='/activities/events/')  
-          | More...
-    div#activityGrid
+    div.col-sm-6
+      div.page-header(style='margin-top:7px; border-bottom: 0;')
+        div.btn-group.btn-group-justified
+          a.btn.btn-primary(href='/activities/addPlan/')
+            | Today
+          a.btn.btn-primary(href='/activities/popular/')
+            | Tomorrow
+          a.btn.btn-primary(href='/activities/events/')  
+            | More...
+      div#activityGrid
+
 
   script(type='text/template', id='tmpl-activity')
     div.activity
-      div.title <%= info.NAME %>
-      div.description <%= info.DESCRIPTION %>
-      div.time <%= new Date(info.TIME).toLocaleDateString() %>
+      h4.title <%= info.NAME %>
+      div.description <% info.DESCRIPTION %>
+      div.attendees <%= info.SHORT %> friends want to go
+      div.btn.btn-success(data-event-id!='<%= info.NAME %>') Count me in
       |<% _.each(friends, function(friend) { %>
-      //- div.friend-name <%= friend.name %>
       img.friend-avatar(src!='<%= friend.avatar %>')
       |<% }); %>
-      div.btn.btn-success(data-activity-id!='<%= info.ACTIVITYID %>') Count me in
       hr

@@ -69,12 +69,14 @@
 
         _.each(this.activities.features, lang.hitch(this, function(activity, i) {
           if (i < 1 || i > 2) {
+            activity.attributes.SHORT = 4;
 
             item = this.template({
               info: activity.attributes,
               friends: this.users
             });
           } else {
+            activity.attributes.SHORT = 2;
             item = this.template({
               info: activity.attributes,
               friends: [this.users[2], this.users[3]]

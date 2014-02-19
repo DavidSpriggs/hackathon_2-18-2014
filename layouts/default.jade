@@ -37,13 +37,20 @@ html
       div.container
         block body
 
-    div.footer
+    div.footer.affix-bottom(data-spy="affix")
       div.container
-        span.copyright.pull-right
-          |&#169; #{copyrightYear} #{copyrightName}
-        ul.links
-          li: a(href='/') Home
-          li: a(href='/contact/') Contact
+        div.btn-group.btn-group-justified
+            a.btn.btn-primary(href='/activities/addPlan/')
+              i.fa.fa-home.fa-3x
+            a.btn.btn-primary(href='/activities/popular/')
+              i.fa.fa-users.fa-3x
+            a.btn.btn-primary(href='/activities/events/')  
+              i.fa.fa-map-marker.fa-3x
+        //- span.copyright.pull-right
+        //-   |&#169; #{copyrightYear} #{copyrightName}
+        //- ul.links
+        //-   li: a(href='/') Home
+        //-   li: a(href='/contact/') Contact
         div.clearfix
 
     div.ajax-spinner

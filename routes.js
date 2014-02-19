@@ -41,6 +41,7 @@ exports = module.exports = function(app, passport) {
 
   // Added for hackathon
   // activities
+  app.get('/activities/home/', require('./views/activities/home/index').init);
   app.get('/activities/addPlan/', require('./views/activities/addPlan/index').init);
   app.get('/activities/popular/', require('./views/activities/popular/index').init);
   app.get('/activities/events/', require('./views/activities/events/index').init);

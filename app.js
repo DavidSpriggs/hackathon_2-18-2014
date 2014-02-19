@@ -104,6 +104,19 @@ app.configure(function(){
   app.locals.copyrightName = app.get('company-name');
   app.locals.cacheBreaker = 'br34k-01';
   app.locals.featureServiceURL = 'https://services1.arcgis.com/wQnFk5ouCfPzTlPw/arcgis/rest/services/BigTripin/FeatureServer';
+  app.locals.users = [{
+    name: 'Andrew',
+    avatar: 'https://2.gravatar.com/avatar/a25421f6c79d5f381fab65c82abf85e8?d=https%3A%2F%2Fidenticons.github.com%2F3f67fd97162d20e6fe27748b5b372509.png&r=x&s=400'
+  }, {
+    name: 'AL',
+    avatar: 'https://1.gravatar.com/avatar/fe330c3cb09248e16d65ec74d1455a5f?d=https%3A%2F%2Fidenticons.github.com%2Faccf9b1ac769272fd9720ca5d85bb1ba.png&r=x&s=400'
+  }, {
+    name: 'Julie',
+    avatar: 'https://2.gravatar.com/avatar/e95ec66e340beccf9b9c76ba7102e27a?d=https%3A%2F%2Fidenticons.github.com%2F1950d625a1d7cb7ffc8ac2d496c4174d.png&r=x&s=400'
+  }, {
+    name: 'Tom',
+    avatar: 'https://0.gravatar.com/avatar/b7ba58abd7dba707a1df4fc9f2b50af8?d=https%3A%2F%2Fidenticons.github.com%2Fed5e3348d8061480ee9e57659512cea6.png&r=x&s=400'
+  }];
 });
 
 //config express in dev environment

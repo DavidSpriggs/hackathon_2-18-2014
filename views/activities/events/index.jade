@@ -23,10 +23,10 @@ block body
       div.time <%= new Date(info.TIME).toLocaleDateString() %>
       h4.title <%= info.NAME %>
       div.description <%= info.DESCRIPTION %>
-<<<<<<< HEAD
-=======
       div.description at <%= info.BUSINESSID %>
->>>>>>> 1af96c09dd3926f09820b978950ec67a20ccb576
-      div.attendees <%= info.SHORT %> friend wants to go
+      //- div.attendees <%= info.SHORT %> friend wants to go
       div.btn.btn-success(data-event-id!='<%= info.NAME %>') Count me in
+      |<% _.each(friends, function(friend) { %>
+      img.friend-avatar(src!='<%= friend.avatar %>')
+      |<% }); %>
       hr

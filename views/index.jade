@@ -8,14 +8,19 @@ block neck
 
 block body
   div.jumbotron
-    h1 Success
+    h1 TripIn
     p.lead
-      | Your Node.js website and user system is running. May the force be with you.
-      div
-        a.btn.btn-primary.btn-lg(href='/signup/') Create an Account
-        |  or&nbsp;
-        a.btn.btn-warning.btn-lg(href='/login/forgot/') Reset Your Password
-      div.clearfix
+      | Plan your future activities at Big Bear Lake and get people to join you. Earn points for great rewards.
+  div.row
+    div.col-sm-4
+      div.panel
+        a.btn.btn-success.btn-block.btn-lg(href='/login/') Sign In
+    div.col-sm-4
+      div.panel
+        a.btn.btn-primary.btn-block.btn-lg(href='/signup/') Create an Account
+    div.col-sm-4
+      div.panel
+        a.btn.btn-warning.btn-block.btn-lg(href='/login/forgot/') Reset Your Password
   div.row
     div.col-sm-4
       div.panel.panel-default

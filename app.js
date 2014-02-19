@@ -103,6 +103,7 @@ app.configure(function(){
   app.locals.copyrightYear = new Date().getFullYear();
   app.locals.copyrightName = app.get('company-name');
   app.locals.cacheBreaker = 'br34k-01';
+  app.locals.featureServiceURL = 'https://services1.arcgis.com/wQnFk5ouCfPzTlPw/arcgis/rest/services/BigTripin/FeatureServer';
 });
 
 //config express in dev environment

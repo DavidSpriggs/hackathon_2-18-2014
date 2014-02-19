@@ -5,7 +5,7 @@ exports.mongodb = {
   uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'localhost/blister'
 };
 exports.companyName = 'Big Bear Lake';
-exports.projectName = 'Tripn\' Big Bear';
+exports.projectName = 'TripIn Big Bear';
 exports.systemEmail = '<youraddy>@esri.com';
 exports.cryptoKey = 'k3yb0ardc4tzzz';
 exports.loginAttempts = {

@@ -4,7 +4,7 @@ exports.port = process.env.PORT || 3000;
 exports.mongodb = {
   uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'localhost/blister'
 };
-exports.companyName = 'City of Big Bear Lake';
+exports.companyName = 'Big Bear Lake';
 exports.projectName = 'Tripn\' Big Bear';
 exports.systemEmail = '<youraddy>@esri.com';
 exports.cryptoKey = 'k3yb0ardc4tzzz';

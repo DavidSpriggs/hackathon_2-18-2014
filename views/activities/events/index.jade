@@ -23,7 +23,7 @@ block body
       div.time <%= new Date(info.TIME).toLocaleDateString() %>
       h4.title <%= info.NAME %>
       div.description <%= info.DESCRIPTION %>
-      div.description at <%= info.BUSINESSID %>
+      div.description(style='font-weight:bold;') at <%= info.BUSINESSID %>
       //- div.attendees <%= info.SHORT %> friend wants to go
       div.btn.btn-success(data-event-id!='<%= info.NAME %>') Count me in
       |<% _.each(friends, function(friend) { %>

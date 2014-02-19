@@ -31,21 +31,23 @@
         this.ACTIVITY_URL = 'https://services1.arcgis.com/wQnFk5ouCfPzTlPw/ArcGIS/rest/services/BigTripin/FeatureServer/1';
         this.EVENTS_URL = 'https://services1.arcgis.com/wQnFk5ouCfPzTlPw/ArcGIS/rest/services/BigTripin/FeatureServer/0';
         var activityIds;
-        var query = new Query(),
-          statisticDefinition = new StatisticDefinition();
+        var query = new Query();
+          // statisticDefinition = new StatisticDefinition();
+          // statisticDefinition.onStatisticField = 'PLAN_ATTEND';
+          // statisticDefinition.outStatisticFieldName = 'Participation';
+          // statisticDefinition.statisticType = 'sum';
 
-        statisticDefinition.onStatisticField = 'PLAN_ATTEND';
-        statisticDefinition.outStatisticFieldName = 'Participation';
-        statisticDefinition.statisticType = 'sum';
+          query.where = '1=1';
+          query.outFields=['*'];
+        // query.outStatistics = [statisticDefinition];
+        // query.groupByFieldsForStatistics = ['ACTIVITY_ID'];
 
-        query.where = '1=1';
-        query.outStatistics = [statisticDefinition];
-        query.groupByFieldsForStatistics = ['ACTIVITY_ID'];
-
-        var queryTask = new QueryTask(this.TRACKING_URL);
+        var queryTask = new QueryTask(this.EVENTS_URL);
 
         queryTask.execute(query, lang.hitch(this, function(features) {
-          this.setActivities(features);
+          // this.setActivities(features);
+          this.activities = features;
+          this.render();
         }), function(err) {
           console.log(err);
         });

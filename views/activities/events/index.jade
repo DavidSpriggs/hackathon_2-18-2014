@@ -19,8 +19,8 @@ block body
   script(type='text/template', id='tmpl-event')
     div.activity
       div.title <%= info.NAME %>
-      div.description <% info.DESCRIPTION %>
-      div.time <%= new Date(info.TIME).toLocaleDateString() %>
+      div.description <%= info.BUSINESSID %>
+      div.time <%= new Date(info.START_DATE).toLocaleDateString() %>
       div.attendees <%= info.SHORT %>
       div.btn.btn-success(data-event-id!='<%= info.NAME %>') Count me in
       hr

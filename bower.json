@@ -8,6 +8,7 @@
     "jquery": "~1.11.0",
     "momentjs": "~2.5.0",
     "respond": "~1.4.2",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "pickadate": "~3.4.0"
   }
 }

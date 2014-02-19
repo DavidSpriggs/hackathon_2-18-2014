@@ -1,24 +1,61 @@
-extends ../../../layouts/account
+extends ../../../layouts/default
 
 block head
   title Account Area
 
+block neck
+  link(rel='stylesheet', href='/views/contact/index.min.css?#{cacheBreaker}')
+  link(rel='stylesheet', href='/vendor/pickadate/lib/compressed/themes/default.css?#{cacheBreaker}', id='theme_base')
+  link(rel='stylesheet', href='/vendor/pickadate/lib/compressed/themes/default.date.css?#{cacheBreaker}', id='theme_date')
+  link(rel='stylesheet', href='/vendor/pickadate/lib/compressed/themes/default.time.css?#{cacheBreaker}', id='theme_time')
+  link(rel='stylesheet', href='http://js.arcgis.com/3.8/js/esri/css/esri.css?#{cacheBreaker}', id='theme_time')
+  
+  
+
+
+
+block feet
+
+  script(src='/vendor/pickadate/lib/compressed/picker.js?#{cacheBreaker}')
+  script(src='/vendor/pickadate/lib/compressed/picker.date.js?#{cacheBreaker}')
+  script(src='/vendor/pickadate/lib/compressed/picker.time.js?#{cacheBreaker}')
+  script(src='http://js.arcgis.com/3.8/?#{cacheBreaker}')
+  script(src='/views/addPlan/index.js?#{cacheBreaker}')
+ 
+  
 block body
-  script(type='text/template', id='tmpl-addPlan')
-    form
-      div.alerts
-        |<% _.each(errors, function(err) { %>
-        div.alert.alert-danger.alert-dismissable
-          button.close(type='button', data-dismiss='alert') &times;
-          |<%- err %>
-        |<% }); %>
-        |<% if (success) { %>
-        div.alert.alert-info.alert-dismissable
-          button.close(type='button', data-dismiss='alert') &times;
-          | We have received your message. Thank you.
-        |<% } %>
-      |<% if (!success) { %>
-      div.form-group(class!='<%- errfor.name ? "has-error" : "" %>')
-        label.control-label Your Name:
-        input.form-control(type='text', name='name', value!='<%= name %>')
-        span.help-block <%- errfor.name %>
+  form(role="form")
+   
+    .row 
+      .form-group
+        label(for="place") Where do you plan to go
+        input.form-control(type="text", id="place" name="place", placeholder="Type a place in Big Bear")
+        p.help-block or 
+           a(data-toggle="modal" data-target="#myMap") select on map 
+           |or 
+           a() dont know yet
+      
+    .row 
+      .form-group
+        .block
+          label(for="when-date") When  
+        .col-md-4
+          input(class="form-control" type="text", id="when-date" name="when-date", placeholder="Date")
+        .col-md-4
+          input(class="form-control" type="text", id="when-time" name="when-time", placeholder="Time")
+      
+    .row.block
+      .form-group
+        .col-md-4
+          button(type="button" class="form-control btn btn-default padding-small-vertical") Count Me In
+        .col-md-4
+          button(type="button" class="form-control btn btn-default padding-small-vertical") Not Yet
+          
+    div(class="modal" id="myMap" role="dialog")
+      .modal-dialog
+        .modal-content
+          .modal-header
+             button(type="button" class="close" data-dismiss="modal") Close
+          .modal-body
+             .div(class="map" id="map")
+          .modal-footer

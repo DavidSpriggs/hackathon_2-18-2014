@@ -73,7 +73,7 @@
         var item;
 
         _.each(this.activities.features, lang.hitch(this, function(activity, i) {
-          if (i < 1 || i > 2) {
+          if (i % 2 === 0) {
             activity.attributes.SHORT = 4;
 
             item = this.template({

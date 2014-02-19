@@ -39,22 +39,23 @@ block body
            a(data-toggle="modal" data-target="#myMap") select on map 
       
     .row 
-      .form-group
+      .form-group.col-sm-6
         .block
           label(for="when-date") When  
         .col-md-4
           input(class="form-control" type="text", id="when-date" name="when-date", placeholder="Date")
+          <p>
         .col-md-4
           input(class="form-control" type="text", id="when-time" name="when-time", placeholder="Time")
       
     .row
-      label What for?
-      .form-group
+      .form-group.col-sm-6
+        label(style="padding-right:10px") What for?
         .btn-group
           buton(type="button" class="btn btn-default") Family
           buton(type="button" class="btn btn-default") Leisure
           buton(type="button" class="btn btn-default") Event
-          buton(type="button" class="btn btn-default") Sight Seeing
+          //- buton(type="button" class="btn btn-default") Sight Seeing
     
     .row.top
       .col-md-6
@@ -67,5 +68,5 @@ block body
           .modal-header
              button(type="button" class="close" data-dismiss="modal") Close
           .modal-body
-             .div(class="map" id="map")
+             div: img(src="/media/map.png" class="map-img" style="height:100%; width:100%")
           .modal-footer

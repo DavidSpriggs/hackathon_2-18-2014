@@ -95,11 +95,13 @@
         var activityIds = [];
 
         _.each(activities.features, lang.hitch(this, function(activity) {
-          activityIds.push(activity.attributes.ACTIVITY_ID);
+          if (activity.attributes.ACTIVITY_ID) {
+            activityIds.push(activity.attributes.ACTIVITY_ID);
+          }
         }));
 
         var query = new Query();
-
+console.log(activityIds);
         query.where = 'ACTIVITYID IN (' + activityIds.join(', ') + ')';
         query.outFields = ['*'];
 

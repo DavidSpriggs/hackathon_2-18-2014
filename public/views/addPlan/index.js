@@ -30,12 +30,12 @@ require([
    Map, FeatureLayer, QueryTask, Query,
    on, dom, domAttr, array) 
  {
-    map = new Map("map", {
-      basemap: "topo",
-      center: [-122.45,37.75], // long, lat
-      zoom: 13,
-      sliderStyle: "small"
-    });
+    // map = new Map("map", {
+    //   basemap: "topo",
+    //   center: [-122.45,37.75], // long, lat
+    //   zoom: 13,
+    //   sliderStyle: "small"
+    // });
     
     doQuery();
     on(dom.byId("place"), "keyup", function(event) {
@@ -53,13 +53,14 @@ require([
         var targetGraphic = chosenFeature.feature;
         
         delete targetGraphic.attributes["OBJECTID"];
-        delete targetGraphic.attributes["ObjectId"];
+        delete targetGraphic.attributes["ObjectID"];
         
         var date = moment(domAttr.get(dom.byId('when-date'), 'value'));
         var time = moment(domAttr.get(dom.byId('when-time'), 'value'), 'HH:mm A');
         targetGraphic.attributes['DATE'] = date;
-       
-        fl.applyEdits(null, [targetGraphic], null,
+
+
+        fl.applyEdits([targetGraphic], null, null,
           function(result) {
             
             console.log(result);

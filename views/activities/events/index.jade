@@ -1,7 +1,32 @@
 extends ../../../layouts/default-user
 
+block neck
+  link(rel='stylesheet', href='/views/activities/events/index.min.css?#{cacheBreaker}')
+
 block head
   title Events
 
+block feet
+  script(src='//js.arcgis.com/3.8compact/' data-dojo-config='async: true')
+  script(src='/views/activities/events/index.min.js?#{cacheBreaker}')
+
 block body
-  div.content-stuff here are some popular Events
+  div.row
+    div.col-sm-4
+      div.panel(style='padding-top:7px;')
+        a.btn.btn-default.btn-lg.btn-block View On Map
+      div#activityGrid
+
+
+  script(type='text/template', id='tmpl-event')
+    div.activity
+      div.time <%= new Date(info.TIME).toLocaleDateString() %>
+      h4.title <%= info.NAME %>
+      div.description <%= info.DESCRIPTION %>
+<<<<<<< HEAD
+=======
+      div.description at <%= info.BUSINESSID %>
+>>>>>>> 1af96c09dd3926f09820b978950ec67a20ccb576
+      div.attendees <%= info.SHORT %> friend wants to go
+      div.btn.btn-success(data-event-id!='<%= info.NAME %>') Count me in
+      hr

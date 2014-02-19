@@ -9,7 +9,6 @@ block neck
   link(rel='stylesheet', href='/vendor/pickadate/lib/compressed/themes/default.css?#{cacheBreaker}', id='theme_base')
   link(rel='stylesheet', href='/vendor/pickadate/lib/compressed/themes/default.date.css?#{cacheBreaker}', id='theme_date')
   link(rel='stylesheet', href='/vendor/pickadate/lib/compressed/themes/default.time.css?#{cacheBreaker}', id='theme_time')
-  link(rel='stylesheet', href='/vendor/devbridge-autocomplete/content/style.css?#{cacheBreaker}')
   link(rel='stylesheet', href='http://js.arcgis.com/3.8/js/esri/css/esri.css?#{cacheBreaker}')
   
   link(rel='stylesheet', href='/views/addPlan/index.css')
@@ -31,14 +30,13 @@ block feet
 block body
   form(role="form")
    
-    .row 
-      .form-group
+   p.top
+    .row.top 
+      .col-sm-6
         label(for="place") Where do you plan to go
         input.form-control(type="text", id="place" name="place", placeholder="Type a place in Big Bear")
         p.help-block or 
            a(data-toggle="modal" data-target="#myMap") select on map 
-           |or 
-           a() dont know yet
       
     .row 
       .form-group
@@ -58,12 +56,10 @@ block body
           buton(type="button" class="btn btn-default") Event
           buton(type="button" class="btn btn-default") Sight Seeing
     
-    .divider
-      .form-group
-        .col-md-2
-          button(type="button" id="countMeIn" class="form-control btn btn-default") Count Me In
-        .col-md-2
-          button(type="button" id="notYet" class="form-control btn btn-default padding-small-vertical") Not Yet
+    .row.top
+      .col-md-6
+          button.btn.btn-success(type="button" id="countMeIn" class="form-control btn btn-default") Count Me In
+      
           
     div(class="modal" id="myMap" role="dialog")
       .modal-dialog

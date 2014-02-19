@@ -15,6 +15,7 @@ var chosenFeature;
 
 require([
        "esri/map", 
+       "esri/layers/FeatureLayer",
        "esri/tasks/QueryTask",
        "esri/tasks/query",
       
@@ -26,7 +27,7 @@ require([
        "dojo/domReady!"], 
  
  function(
-   Map, QueryTask, Query,
+   Map, FeatureLayer, QueryTask, Query,
    on, dom, domAttr, array) 
  {
     map = new Map("map", {
@@ -46,9 +47,30 @@ require([
    
     on(dom.byId('countMeIn'), 'click', function(event) {
         var fl = new FeatureLayer( AGS_ACTIVITES );
-        var targetGraphic = chosenFeature;
-        delete chosenFeature.attributes["OBJECTID"];
-        firePerimeterFL.applyEdits(null, [targetGraphic], null);
+        if(chosenFeature == null || chosenFeature.feature == null) {
+          alert("Choose a valid location");
+        }
+        var targetGraphic = chosenFeature.feature;
+        
+        delete targetGraphic.attributes["OBJECTID"];
+        delete targetGraphic.attributes["ObjectId"];
+        
+        var date = moment(domAttr.get(dom.byId('when-date'), 'value'));
+        var time = moment(domAttr.get(dom.byId('when-time'), 'value'), 'HH:mm A');
+        targetGraphic.attributes['DATE'] = date;
+       
+        fl.applyEdits(null, [targetGraphic], null,
+          function(result) {
+            debugger;
+            console.log(result);
+            window.location = "/activities/home/";
+          },
+          function(err) {
+            debugger;
+            console.log(err);
+            window.location = "/activities/home/";
+          });
+        //activties/home
     });
     
    
@@ -57,8 +79,8 @@ require([
       var qt = new QueryTask(AGS_BUSINESS);
       var query = new Query();
       query.where = "1=1";
-      query.returnGeometry = false;
-      query.outFields = ['NAME', 'OBJECTID'];
+      query.returnGeometry = true;
+      query.outFields = ['NAME', 'OBJECTID', 'BUSINESSID', 'BUSINESSID_1'];
       qt.execute(query, function(results) {
         var data = array.map(results.features, function(feature) {
           
@@ -71,7 +93,7 @@ require([
         $('#place').autocomplete({
             lookup: data,
              onSelect: function (suggestion) {
-               chosenFeature = suggestion;
+               chosenFeature = suggestion.data;
              }
             
          });

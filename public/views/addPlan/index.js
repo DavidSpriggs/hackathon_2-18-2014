@@ -7,23 +7,28 @@
   
 }());
 
-var AGS_BUSINESS = "https://services1.arcgis.com/wQnFk5ouCfPzTlPw/ArcGIS/rest/services/BigTripin/FeatureServer/2/query";
+var AGS_BUSINESS = "https://services1.arcgis.com/wQnFk5ouCfPzTlPw/ArcGIS/rest/services/BigTripin/FeatureServer/2";
+var AGS_ACTIVITES = "https://services1.arcgis.com/wQnFk5ouCfPzTlPw/ArcGIS/rest/services/BigTripin/FeatureServer/1";
+
 var map;
+var chosenFeature;
 
 require([
        "esri/map", 
+       "esri/layers/FeatureLayer",
        "esri/tasks/QueryTask",
        "esri/tasks/query",
       
        "dojo/on",
        "dojo/dom",
        "dojo/dom-attr",
+       "dojo/_base/array",
         
        "dojo/domReady!"], 
  
  function(
-   Map, QueryTask, Query,
-   on, dom, domAttr) 
+   Map, FeatureLayer, QueryTask, Query,
+   on, dom, domAttr, array) 
  {
     map = new Map("map", {
       basemap: "topo",
@@ -32,31 +37,71 @@ require([
       sliderStyle: "small"
     });
     
+    doQuery();
     on(dom.byId("place"), "keyup", function(event) {
-          doQuery(domAttr.get(dom.byId('place'), 'value'));
+      var text = domAttr.get(dom.byId('place'), 'value');
+      if(text.length >= 2 ) {
+        //doQuery(text);
+      }
+    });
+   
+    on(dom.byId('countMeIn'), 'click', function(event) {
+        var fl = new FeatureLayer( AGS_ACTIVITES );
+        if(chosenFeature == null || chosenFeature.feature == null) {
+          alert("Choose a valid location");
+        }
+        var targetGraphic = chosenFeature.feature;
+        
+        delete targetGraphic.attributes["OBJECTID"];
+        delete targetGraphic.attributes["ObjectId"];
+        
+        var date = moment(domAttr.get(dom.byId('when-date'), 'value'));
+        var time = moment(domAttr.get(dom.byId('when-time'), 'value'), 'HH:mm A');
+        targetGraphic.attributes['DATE'] = date;
+       
+        fl.applyEdits(null, [targetGraphic], null,
+          function(result) {
+            
+            console.log(result);
+            window.location = "/activities/home/";
+          },
+          function(err) {
+            
+            console.log(err);
+            window.location = "/activities/home/";
+          });
+        //activties/home
     });
     
    
       
     function doQuery(text) {
-          var qt = new QueryTask(AGS_BUSINESS);
-          var query = new Query();
-          query.where = "NAME like %"+ text +"%";
-          query.returnGeometry = false;
-          query.outFields = window.outFields;
-          qt.execute(query, function(results) {
-            var data = array.map(results.features, function(feature) {
-              return {
-                // property names used here match those used when creating the dgrid
-                "id": feature.attributes[window.outFields[0]],
-                "stateName": feature.attributes[window.outFields[1]],
-                "median": feature.attributes[window.outFields[2]],
-                "over1m": feature.attributes[window.outFields[3]]
-              }
-            });
-            var memStore = new Memory({ data: data });
-            window.grid.set("store", memStore);
-          });
+      var qt = new QueryTask(AGS_BUSINESS);
+      var query = new Query();
+      query.where = "1=1";
+      query.returnGeometry = true;
+      query.outFields = ['NAME', 'OBJECTID', 'BUSINESSID', 'BUSINESSID_1'];
+      qt.execute(query, function(results) {
+        var data = array.map(results.features, function(feature) {
+          
+          return {
+            value: feature.attributes['NAME'],
+            data: {feature: feature}
+          };
+          
+        });
+        $('#place').autocomplete({
+            lookup: data,
+             onSelect: function (suggestion) {
+               chosenFeature = suggestion.data;
+             }
+            
+         });
+        
+    
+         
+        
+      });
    }
     
   

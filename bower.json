@@ -9,6 +9,7 @@
     "momentjs": "~2.5.0",
     "respond": "~1.4.2",
     "underscore": "~1.5.2",
-    "pickadate": "~3.4.0"
+    "pickadate": "~3.4.0",
+    "devbridge-autocomplete" : "~1.2.9"
   }
 }

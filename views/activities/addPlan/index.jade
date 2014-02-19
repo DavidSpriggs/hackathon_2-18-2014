@@ -5,11 +5,13 @@ block head
   title Account Area
 
 block neck
-  link(rel='stylesheet', href='/views/addPlan/index.min.css?#{cacheBreaker}')
+  link(rel='stylesheet', href='/views/contact/index.min.css?#{cacheBreaker}')
   link(rel='stylesheet', href='/vendor/pickadate/lib/compressed/themes/default.css?#{cacheBreaker}', id='theme_base')
   link(rel='stylesheet', href='/vendor/pickadate/lib/compressed/themes/default.date.css?#{cacheBreaker}', id='theme_date')
   link(rel='stylesheet', href='/vendor/pickadate/lib/compressed/themes/default.time.css?#{cacheBreaker}', id='theme_time')
-  link(rel='stylesheet', href='http://js.arcgis.com/3.8/js/esri/css/esri.css?#{cacheBreaker}', id='theme_time')
+  link(rel='stylesheet', href='http://js.arcgis.com/3.8/js/esri/css/esri.css?#{cacheBreaker}')
+  
+  link(rel='stylesheet', href='/views/addPlan/index.css')
   
   
 
@@ -20,6 +22,7 @@ block feet
   script(src='/vendor/pickadate/lib/compressed/picker.js?#{cacheBreaker}')
   script(src='/vendor/pickadate/lib/compressed/picker.date.js?#{cacheBreaker}')
   script(src='/vendor/pickadate/lib/compressed/picker.time.js?#{cacheBreaker}')
+  script(src='/vendor/devbridge-autocomplete/dist/jquery.autocomplete.min.js?#{cacheBreaker}')
   script(src='http://js.arcgis.com/3.8/?#{cacheBreaker}')
   script(src='/views/addPlan/index.js?#{cacheBreaker}')
  
@@ -31,24 +34,32 @@ block body
     .row.top 
       .col-sm-6
         label(for="place") Where do you plan to go
-      .col-sm-6
         input.form-control(type="text", id="place" name="place", placeholder="Type a place in Big Bear")
         p.help-block or 
-           a(data-toggle="modal" data-target="#myMap") select on map
+           a(data-toggle="modal" data-target="#myMap") select on map 
       
-    .row.top 
-      .col-sm-4
-        label(for="when-date") When  
-      .col-md-4
-        input(class="form-control" type="text", id="when-date" name="when-date", placeholder="Date")
-      .col-md-4
-        input(class="form-control" type="text", id="when-time" name="when-time", placeholder="Time")
+    .row 
+      .form-group
+        .block
+          label(for="when-date") When  
+        .col-md-4
+          input(class="form-control" type="text", id="when-date" name="when-date", placeholder="Date")
+        .col-md-4
+          input(class="form-control" type="text", id="when-time" name="when-time", placeholder="Time")
+      
+    .row
+      label What for?
+      .form-group
+        .btn-group
+          buton(type="button" class="btn btn-default") Family
+          buton(type="button" class="btn btn-default") Leisure
+          buton(type="button" class="btn btn-default") Event
+          buton(type="button" class="btn btn-default") Sight Seeing
     
     .row.top
       .col-md-6
-        button.btn.btn-success(type="button" class="form-control btn btn-default padding-small-vertical") Count Me In
-      .col-md-6
-        button.btn(type="button" class="form-control btn btn-default padding-small-vertical") Not Yet
+          button.btn.btn-success(type="button" id="countMeIn" class="form-control btn btn-default") Count Me In
+      
           
     div(class="modal" id="myMap" role="dialog")
       .modal-dialog

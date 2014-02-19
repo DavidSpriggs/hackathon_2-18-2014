@@ -41,6 +41,10 @@ module.exports = function(grunt) {
           {
             expand: true, cwd: 'bower_components/pickadate/',
             src: ['lib/compressed/**'], dest: 'public/vendor/pickadate/'
+          },
+          {
+            expand: true, cwd: 'bower_components/devbridge-autocomplete/',
+            src: ['dist/**', 'content/**'], dest: 'public/vendor/devbridge-autocomplete/'
           }
         ]
       }

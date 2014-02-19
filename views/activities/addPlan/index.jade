@@ -1,0 +1,24 @@
+extends ../../../layouts/account
+
+block head
+  title Account Area
+
+block body
+  script(type='text/template', id='tmpl-addPlan')
+    form
+      div.alerts
+        |<% _.each(errors, function(err) { %>
+        div.alert.alert-danger.alert-dismissable
+          button.close(type='button', data-dismiss='alert') &times;
+          |<%- err %>
+        |<% }); %>
+        |<% if (success) { %>
+        div.alert.alert-info.alert-dismissable
+          button.close(type='button', data-dismiss='alert') &times;
+          | We have received your message. Thank you.
+        |<% } %>
+      |<% if (!success) { %>
+      div.form-group(class!='<%- errfor.name ? "has-error" : "" %>')
+        label.control-label Your Name:
+        input.form-control(type='text', name='name', value!='<%= name %>')
+        span.help-block <%- errfor.name %>

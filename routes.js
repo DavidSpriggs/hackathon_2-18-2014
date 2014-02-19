@@ -171,6 +171,11 @@ exports = module.exports = function(app, passport) {
   app.get('/account/settings/arcgis/callback/', require('./views/account/settings/index').connectArcGIS);
   app.get('/account/settings/arcgis/disconnect/', require('./views/account/settings/index').disconnectArcGIS);
 
+  // T.M. Added for hackathon
+  // home
+  app.get('/activities/addPlan/', require('./views/activities/addPlan/index').init); 
+  
+  //End of added for hackathon
   //route not found
   app.all('*', require('./views/http/index').http404);
 };

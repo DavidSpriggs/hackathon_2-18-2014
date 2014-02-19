@@ -30,4 +30,5 @@ block body
       div.description <% info.DESCRIPTION %>
       div.time <%= new Date(info.TIME).toLocaleDateString() %>
       div.attendees <%= info.SHORT %>
-      div.btn.btn-success(data-activity-id='<%= info.NAME %>') Count me in
+      div.btn.btn-success(data-activity-id!='<%= info.NAME %>') Count me in
+      hr

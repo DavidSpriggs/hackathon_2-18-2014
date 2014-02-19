@@ -22,7 +22,8 @@ block body
     div.activity
       div.time <%= new Date(info.TIME).toLocaleDateString() %>
       h4.title <%= info.NAME %>
-      div.description <% info.DESCRIPTION %>
+      div.description <%= info.DESCRIPTION %>
+      div.description at <%= info.BUSINESSID %>
       div.attendees <%= info.SHORT %> friend wants to go
       div.btn.btn-success(data-event-id!='<%= info.NAME %>') Count me in
       hr

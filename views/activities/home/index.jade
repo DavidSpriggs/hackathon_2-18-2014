@@ -1,0 +1,26 @@
+extends ../../../layouts/default-user
+
+block head
+  title Account Area
+
+block neck
+  link(rel='stylesheet', href='/views/account/index.min.css?#{cacheBreaker}')
+
+block feet
+  script(src='/views/account/index.min.js?#{cacheBreaker}')
+  script(src='/dojo/dojo.js' data-dojo-config='async: true')
+
+block body
+  div.row
+    div.col-sm-12
+      div.page-header
+        h3 #{user.nameParts.full}
+      div.row
+        div.col-sm-3
+          div.well.stat
+            div.stat-value #{user.reputation}
+            div.stat-label Reputation Points
+        div.col-sm-3
+          div.panel
+            a.btn.btn-success.btn-lg.btn-block(href='/activities/addPlan/') New Activity
+

@@ -1,7 +1,33 @@
 extends ../../../layouts/default-user
 
 block head
-  title Account Area
+  title Popular Activities
+
+block neck
+  link(rel='stylesheet', href='/views/activities/popular/index.min.css?#{cacheBreaker}')
+
+block feet
+  script(src='//js.arcgis.com/3.8' data-dojo-config='async: true')
+  script(src='/views/activities/popular/index.min.js?#{cacheBreaker}')
 
 block body
-  div.content-stuff here are some popular activities
+  div.row
+  div.col-sm-6
+    div.page-header
+      div.btn-group.btn-group-justified
+        a.btn.btn-primary(href='/activities/addPlan/')
+          | Today
+        a.btn.btn-primary(href='/activities/popular/')
+          | Tomorrow
+        a.btn.btn-primary(href='/activities/events/')  
+          | More...
+    div#activityGrid
+
+
+  script(type='text/template', id='tmpl-activity')
+    div.activity
+      div.title <%= info.NAME %>
+      div.description <% info.DESCRIPTION %>
+      div.time <%= new Date(info.TIME).toLocaleDateString() %>
+      div.attendees <%= info.SHORT %>
+      div.btn.btn-success(data-activity-id='<%= info.NAME %>') Count me in

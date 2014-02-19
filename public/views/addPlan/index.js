@@ -41,7 +41,7 @@ require([
     function doQuery(text) {
           var qt = new QueryTask(AGS_BUSINESS);
           var query = new Query();
-          query.where = "1=1";
+          query.where = "NAME like %"+ text +"%";
           query.returnGeometry = false;
           query.outFields = window.outFields;
           qt.execute(query, function(results) {

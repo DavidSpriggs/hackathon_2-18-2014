@@ -10,7 +10,7 @@ html
     div.navbar.navbar-default.navbar-fixed-top
       div.container
         div.navbar-header
-          a.navbar-brand(href='/account/')
+          a.navbar-brand(href='/')
             img.navbar-logo(src='/media/app-logo.png')
             span.navbar-brand-label #{projectName}
           button.navbar-toggle.collapsed(data-toggle='collapse', data-target='.my-navbar-collapse')
@@ -19,26 +19,33 @@ html
             span.icon-bar
         div.navbar-collapse.my-navbar-collapse.collapse
           ul.nav.navbar-nav
-            li: a(href='/account/') My Account
-            li: a(href='/account/settings/') Settings
-          ul.nav.navbar-nav.pull-right
-            li: a(href='/logout/')
-              i.fa.fa-user
-              |  Sign Out
+            li: a(href='/') Home
+            li: a(href='/about/') About
+            li: a(href='/signup/') Sign Up
+            li: a(href='/contact/') Contact
+          ul.nav.navbar-nav.navbar-right
+            if user && user.username
+              li: a(href='#{user.defaultReturnUrl}')
+                i.fa.fa-user
+                |  #{user.username}
+            else
+              li: a(href='/login/')
+                i.fa.fa-user
+                |  Sign In
 
     div.page
       div.container
         block body
 
-    div.footer
-      div.container
-        div.inner
-          span.copyright.pull-right
-            |&#169; #{copyrightYear} #{copyrightName}
-          ul.links
-            li: a(href='/') Home
-            li: a(href='/logout/') Sign Out
-          div.clearfix
+    div.footer.user.affix-bottom(data-spy="affix")
+        div.btn-group.btn-group-justified
+            a.btn.btn-primary(href='/activities/addPlan/')
+              i.fa.fa-home.fa-3x
+            a.btn.btn-primary(href='/activities/popular/')
+              i.fa.fa-users.fa-3x
+            a.btn.btn-primary(href='/activities/events/')  
+              i.fa.fa-map-marker.fa-3x
+        div.clearfix
 
     div.ajax-spinner
       img(src='/media/ajax-pulse.gif')

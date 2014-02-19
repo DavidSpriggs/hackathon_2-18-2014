@@ -39,6 +39,12 @@ exports = module.exports = function(app, passport) {
   app.get('/signup/', require('./views/signup/index').init);
   app.post('/signup/', require('./views/signup/index').signup);
 
+  // Added for hackathon
+  // activities
+  app.get('/activities/addPlan/', require('./views/activities/addPlan/index').init);
+  app.get('/activities/popular/', require('./views/activities/popular/index').init);
+  app.get('/activities/events/', require('./views/activities/events/index').init);
+
   //social sign up
   app.post('/signup/social/', require('./views/signup/index').signupSocial);
   app.get('/signup/twitter/', passport.authenticate('twitter', { callbackURL: '/signup/twitter/callback/' }));
@@ -170,12 +176,7 @@ exports = module.exports = function(app, passport) {
   app.get('/account/settings/arcgis/', passport.authenticate('arcgis', {callbackURL: '/account/settings/arcgis/callback/'}));
   app.get('/account/settings/arcgis/callback/', require('./views/account/settings/index').connectArcGIS);
   app.get('/account/settings/arcgis/disconnect/', require('./views/account/settings/index').disconnectArcGIS);
-
-  // T.M. Added for hackathon
-  // home
-  app.get('/activities/addPlan/', require('./views/activities/addPlan/index').init); 
   
-  //End of added for hackathon
   //route not found
   app.all('*', require('./views/http/index').http404);
 };

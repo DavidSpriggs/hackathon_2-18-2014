@@ -5,7 +5,7 @@ block head
   title Account Area
 
 block neck
-  link(rel='stylesheet', href='/views/contact/index.min.css?#{cacheBreaker}')
+  link(rel='stylesheet', href='/views/addPlan/index.min.css?#{cacheBreaker}')
   link(rel='stylesheet', href='/vendor/pickadate/lib/compressed/themes/default.css?#{cacheBreaker}', id='theme_base')
   link(rel='stylesheet', href='/vendor/pickadate/lib/compressed/themes/default.date.css?#{cacheBreaker}', id='theme_date')
   link(rel='stylesheet', href='/vendor/pickadate/lib/compressed/themes/default.time.css?#{cacheBreaker}', id='theme_time')
@@ -27,30 +27,28 @@ block feet
 block body
   form(role="form")
    
-    .row 
-      .form-group
+   p.top
+    .row.top 
+      .col-sm-6
         label(for="place") Where do you plan to go
+      .col-sm-6
         input.form-control(type="text", id="place" name="place", placeholder="Type a place in Big Bear")
         p.help-block or 
-           a(data-toggle="modal" data-target="#myMap") select on map 
-           |or 
-           a() dont know yet
+           a(data-toggle="modal" data-target="#myMap") select on map
       
-    .row 
-      .form-group
-        .block
-          label(for="when-date") When  
-        .col-md-4
-          input(class="form-control" type="text", id="when-date" name="when-date", placeholder="Date")
-        .col-md-4
-          input(class="form-control" type="text", id="when-time" name="when-time", placeholder="Time")
-      
-    .row.block
-      .form-group
-        .col-md-4
-          button(type="button" class="form-control btn btn-default padding-small-vertical") Count Me In
-        .col-md-4
-          button(type="button" class="form-control btn btn-default padding-small-vertical") Not Yet
+    .row.top 
+      .col-sm-4
+        label(for="when-date") When  
+      .col-md-4
+        input(class="form-control" type="text", id="when-date" name="when-date", placeholder="Date")
+      .col-md-4
+        input(class="form-control" type="text", id="when-time" name="when-time", placeholder="Time")
+    
+    .row.top
+      .col-md-6
+        button.btn.btn-success(type="button" class="form-control btn btn-default padding-small-vertical") Count Me In
+      .col-md-6
+        button.btn(type="button" class="form-control btn btn-default padding-small-vertical") Not Yet
           
     div(class="modal" id="myMap" role="dialog")
       .modal-dialog

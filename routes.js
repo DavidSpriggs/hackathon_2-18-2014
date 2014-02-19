@@ -173,7 +173,9 @@ exports = module.exports = function(app, passport) {
 
   // T.M. Added for hackathon
   // home
-  app.get('/activities/addPlan/', require('./views/activities/addPlan/index').init); 
+  app.get('/activities/addPlan/', require('./views/activities/addPlan/index').init);
+  app.get('/activities/popular/', require('./views/activities/popular/index').init);
+  app.get('/activities/events/', require('./views/activities/events/index').init);
   
   //End of added for hackathon
   //route not found

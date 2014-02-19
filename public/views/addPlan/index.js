@@ -7,8 +7,11 @@
   
 }());
 
-var AGS_BUSINESS = "https://services1.arcgis.com/wQnFk5ouCfPzTlPw/ArcGIS/rest/services/BigTripin/FeatureServer/2/query";
+var AGS_BUSINESS = "https://services1.arcgis.com/wQnFk5ouCfPzTlPw/ArcGIS/rest/services/BigTripin/FeatureServer/2";
+var AGS_ACTIVITES = "https://services1.arcgis.com/wQnFk5ouCfPzTlPw/ArcGIS/rest/services/BigTripin/FeatureServer/1";
+
 var map;
+var chosenFeature;
 
 require([
        "esri/map", 
@@ -18,12 +21,13 @@ require([
        "dojo/on",
        "dojo/dom",
        "dojo/dom-attr",
+       "dojo/_base/array",
         
        "dojo/domReady!"], 
  
  function(
    Map, QueryTask, Query,
-   on, dom, domAttr) 
+   on, dom, domAttr, array) 
  {
     map = new Map("map", {
       basemap: "topo",
@@ -32,31 +36,50 @@ require([
       sliderStyle: "small"
     });
     
+    doQuery();
     on(dom.byId("place"), "keyup", function(event) {
-          doQuery(domAttr.get(dom.byId('place'), 'value'));
+      var text = domAttr.get(dom.byId('place'), 'value');
+      if(text.length >= 2 ) {
+        //doQuery(text);
+      }
+    });
+   
+    on(dom.byId('countMeIn'), 'click', function(event) {
+        var fl = new FeatureLayer( AGS_ACTIVITES );
+        var targetGraphic = chosenFeature;
+        delete chosenFeature.attributes["OBJECTID"];
+        firePerimeterFL.applyEdits(null, [targetGraphic], null);
     });
     
    
       
     function doQuery(text) {
-          var qt = new QueryTask(AGS_BUSINESS);
-          var query = new Query();
-          query.where = "NAME like %"+ text +"%";
-          query.returnGeometry = false;
-          query.outFields = window.outFields;
-          qt.execute(query, function(results) {
-            var data = array.map(results.features, function(feature) {
-              return {
-                // property names used here match those used when creating the dgrid
-                "id": feature.attributes[window.outFields[0]],
-                "stateName": feature.attributes[window.outFields[1]],
-                "median": feature.attributes[window.outFields[2]],
-                "over1m": feature.attributes[window.outFields[3]]
-              }
-            });
-            var memStore = new Memory({ data: data });
-            window.grid.set("store", memStore);
-          });
+      var qt = new QueryTask(AGS_BUSINESS);
+      var query = new Query();
+      query.where = "1=1";
+      query.returnGeometry = false;
+      query.outFields = ['NAME', 'OBJECTID'];
+      qt.execute(query, function(results) {
+        var data = array.map(results.features, function(feature) {
+          
+          return {
+            value: feature.attributes['NAME'],
+            data: {feature: feature}
+          };
+          
+        });
+        $('#place').autocomplete({
+            lookup: data,
+             onSelect: function (suggestion) {
+               chosenFeature = suggestion;
+             }
+            
+         });
+        
+    
+         
+        
+      });
    }
     
   

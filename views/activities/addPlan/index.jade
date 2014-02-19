@@ -9,7 +9,10 @@ block neck
   link(rel='stylesheet', href='/vendor/pickadate/lib/compressed/themes/default.css?#{cacheBreaker}', id='theme_base')
   link(rel='stylesheet', href='/vendor/pickadate/lib/compressed/themes/default.date.css?#{cacheBreaker}', id='theme_date')
   link(rel='stylesheet', href='/vendor/pickadate/lib/compressed/themes/default.time.css?#{cacheBreaker}', id='theme_time')
-  link(rel='stylesheet', href='http://js.arcgis.com/3.8/js/esri/css/esri.css?#{cacheBreaker}', id='theme_time')
+  link(rel='stylesheet', href='/vendor/devbridge-autocomplete/content/style.css?#{cacheBreaker}')
+  link(rel='stylesheet', href='http://js.arcgis.com/3.8/js/esri/css/esri.css?#{cacheBreaker}')
+  
+  link(rel='stylesheet', href='/views/addPlan/index.css')
   
   
 
@@ -20,6 +23,7 @@ block feet
   script(src='/vendor/pickadate/lib/compressed/picker.js?#{cacheBreaker}')
   script(src='/vendor/pickadate/lib/compressed/picker.date.js?#{cacheBreaker}')
   script(src='/vendor/pickadate/lib/compressed/picker.time.js?#{cacheBreaker}')
+  script(src='/vendor/devbridge-autocomplete/dist/jquery.autocomplete.min.js?#{cacheBreaker}')
   script(src='http://js.arcgis.com/3.8/?#{cacheBreaker}')
   script(src='/views/addPlan/index.js?#{cacheBreaker}')
  
@@ -45,12 +49,21 @@ block body
         .col-md-4
           input(class="form-control" type="text", id="when-time" name="when-time", placeholder="Time")
       
-    .row.block
+    .row
+      label What for?
       .form-group
-        .col-md-4
-          button(type="button" class="form-control btn btn-default padding-small-vertical") Count Me In
-        .col-md-4
-          button(type="button" class="form-control btn btn-default padding-small-vertical") Not Yet
+        .btn-group
+          buton(type="button" class="btn btn-default") Family
+          buton(type="button" class="btn btn-default") Leisure
+          buton(type="button" class="btn btn-default") Event
+          buton(type="button" class="btn btn-default") Sight Seeing
+    
+    .divider
+      .form-group
+        .col-md-2
+          button(type="button" id="countMeIn" class="form-control btn btn-default") Count Me In
+        .col-md-2
+          button(type="button" id="notYet" class="form-control btn btn-default padding-small-vertical") Not Yet
           
     div(class="modal" id="myMap" role="dialog")
       .modal-dialog

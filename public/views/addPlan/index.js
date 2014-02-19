@@ -61,12 +61,12 @@ require([
        
         fl.applyEdits(null, [targetGraphic], null,
           function(result) {
-            debugger;
+            
             console.log(result);
             window.location = "/activities/home/";
           },
           function(err) {
-            debugger;
+            
             console.log(err);
             window.location = "/activities/home/";
           });

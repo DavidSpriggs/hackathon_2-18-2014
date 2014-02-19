@@ -37,6 +37,10 @@ module.exports = function(grunt) {
           {
             expand: true, cwd: 'bower_components/underscore/',
             src: ['underscore.js'], dest: 'public/vendor/underscore/'
+          },
+          {
+            expand: true, cwd: 'bower_components/pickadate/',
+            src: ['lib/compressed/**'], dest: 'public/vendor/pickadate/'
           }
         ]
       }
